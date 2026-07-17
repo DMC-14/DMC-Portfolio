@@ -7,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -55,7 +58,6 @@
 </head>
 <body class="bg-brand-cream text-brand-navy font-sans antialiased selection:bg-brand-yellow selection:text-brand-navy">
 
-    <!-- Navigation -->
     <header class="fixed top-0 w-full bg-brand-cream/90 backdrop-blur-md z-50 border-b border-brand-yellow/30">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex justify-between items-center">
             <a href="#" class="text-xl font-semibold tracking-tight text-brand-navy">YourName.</a>
@@ -83,21 +85,34 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center pt-20 pb-12 px-6 lg:px-12 max-w-7xl mx-auto">
-        <div class="max-w-3xl fade-in">
-            <h2 class="text-brand-red text-lg md:text-xl mb-4 font-medium tracking-wide uppercase">Hello, I'm a Multidisciplinary Creative.</h2>
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-8 text-brand-navy">
-                Crafting visual stories through <span class="text-brand-orange">Blender</span>, <span class="text-brand-yellow">Animation</span>, <span class="text-brand-red">Photography</span>, & <span class="text-brand-navy/70">Design</span>.
-            </h1>
-            <a href="#work" class="inline-flex items-center gap-2 text-sm font-medium pb-1 border-b-2 border-brand-navy hover:text-brand-orange hover:border-brand-orange transition-colors">
-                Explore my work 
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-            </a>
+    <section id="hero" class="relative min-h-screen flex items-center pt-20 pb-12 overflow-hidden bg-brand-navy z-0">
+        <!-- Background Image -->
+        <div class="absolute inset-0 w-full h-full -z-20 bg-brand-navy">
+            <!-- Using your custom BG image -->
+            <img src="images/BG.jpg" alt="Hero Background" class="w-full h-full object-cover object-center opacity-100" id="hero-bg-img">
         </div>
+        
+        <!-- Dark Gradient Overlay for Text Readability -->
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/70 to-transparent -z-10"></div>
+
+        <!-- Content Container -->
+        <div class="px-6 lg:px-12 max-w-7xl mx-auto w-full relative z-10">
+            <div id="hero-content" class="max-w-3xl fade-in will-change-transform">
+                <h2 class="text-brand-yellow text-lg md:text-xl mb-4 font-medium tracking-wide uppercase">Hello, I'm a Multidisciplinary Creative.</h2>
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-8 text-white">
+                    Crafting visual stories through <span class="text-brand-orange">Blender</span>, <span class="text-brand-yellow">Animation</span>, <span class="text-brand-red">Photography</span>, & <span class="text-brand-cream/70">Design</span>.
+                </h1>
+                <a href="#work" class="inline-flex items-center gap-2 text-sm font-medium pb-1 border-b-2 border-white text-white hover:text-brand-orange hover:border-brand-orange transition-colors">
+                    Explore my work
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Gradual fade/blend into the next section at the bottom -->
+        <div class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-brand-cream to-transparent z-20 pointer-events-none"></div>
     </section>
 
-    <!-- Work / Portfolio Section -->
     <section id="work" class="py-24 px-6 lg:px-12 max-w-7xl mx-auto border-t border-brand-yellow/30">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <h2 class="text-3xl font-bold tracking-tight text-brand-navy">Selected Works</h2>
@@ -118,7 +133,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-24 px-6 lg:px-12 bg-white">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div class="relative p-4">
@@ -162,7 +176,6 @@
         </div>
     </section>
 
-    <!-- Contact / Footer Section -->
     <section id="contact" class="py-32 px-6 lg:px-12 max-w-7xl mx-auto text-center relative overflow-hidden">
         <!-- Abstract geometric decoration -->
         <div class="absolute top-1/2 left-0 w-32 h-32 bg-brand-red rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
@@ -180,18 +193,44 @@
         <p>&copy; 2026 Your Name. All rights reserved. Designed with intention.</p>
     </footer>
 
+    <!-- 3D Model Lightbox Modal -->
+    <div id="glb-modal" class="fixed inset-0 z-[100] hidden bg-brand-navy/95 backdrop-blur-md flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <button id="close-modal-btn" class="absolute top-6 right-6 md:top-10 md:right-10 text-brand-cream hover:text-brand-orange transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider z-50">
+            Close 
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="w-full max-w-5xl h-[80vh] flex flex-col items-center px-4 relative">
+            <h3 id="modal-title" class="text-brand-yellow text-2xl font-bold mb-4 tracking-tight"></h3>
+            
+            <!-- The model-viewer component -->
+            <div class="w-full h-full rounded-sm overflow-hidden border border-brand-yellow/20 relative shadow-2xl bg-brand-navy/50">
+                <model-viewer 
+                    id="modal-model-viewer" 
+                    src="" 
+                    alt="3D Model" 
+                    auto-rotate 
+                    camera-controls 
+                    shadow-intensity="1"
+                    exposure="1"
+                    class="w-full h-full outline-none cursor-grab active:cursor-grabbing">
+                </model-viewer>
+            </div>
+            <p class="text-brand-cream/60 text-xs mt-4 uppercase tracking-widest text-center">Use mouse or touch to rotate and zoom</p>
+        </div>
+    </div>
+
     <script>
         // --- Mock Data for Portfolio Projects ---
-        // Using brand colors for placeholder images to match the theme
         const projects = [
             {
                 id: 1,
-                title: "My First Blender Render",
+                title: "Serene Spaces",
                 category: "blender",
                 categoryLabel: "3D / Blender",
-                image: "images/my-render.jpg",
-                description: "This is my very first architectural visualization.",
-                link: "https://www.artstation.com/" // <-- Add a link property here!
+                image: "images/STATUE.png",
+                description: "Minimalist architectural visualization.",
+                link: "https://example.com/project1", // Fixed missing comma here!
+                glb: "images/Statue Scene.glb" // Optional GLB model for 3D view
             },
             {
                 id: 2,
@@ -200,7 +239,7 @@
                 categoryLabel: "Animation",
                 image: "https://placehold.co/800x1000/D62828/EAE2B7?text=Motion+Graphics",
                 description: "Brand identity in motion.",
-                link: "https://vimeo.com/" // <-- Add links to your actual live projects, videos, or posts
+                link: "https://example.com/project2"
             },
             {
                 id: 3,
@@ -209,7 +248,7 @@
                 categoryLabel: "Photography",
                 image: "https://placehold.co/800x800/F77F00/003049?text=Street+Photography",
                 description: "Exploring shapes in the city.",
-                link: "https://instagram.com/" 
+                link: "https://example.com/project3"
             },
             {
                 id: 4,
@@ -218,7 +257,7 @@
                 categoryLabel: "Graphic Design",
                 image: "https://placehold.co/800x600/FCBF49/003049?text=Brand+Identity",
                 description: "Clean packaging and brand guidelines.",
-                link: "#" // Use "#" if you don't have a link yet
+                link: "https://example.com/project4"
             },
             {
                 id: 5,
@@ -227,7 +266,7 @@
                 categoryLabel: "3D / Animation",
                 image: "https://placehold.co/800x800/EAE2B7/D62828?text=3D+Abstract",
                 description: "Satisfying seamless physics loops.",
-                link: "#"
+                link: "https://example.com/project5"
             },
             {
                 id: 6,
@@ -236,16 +275,7 @@
                 categoryLabel: "Graphic Design",
                 image: "https://placehold.co/800x1000/003049/F77F00?text=Print+Design",
                 description: "Magazine layout focused on typography.",
-                link: "#"
-            },
-            {
-                id: 7, 
-                title: "My Brand New Photo Shoot",
-                category: "photography", 
-                categoryLabel: "Portrait Photography",
-                image: "images/portrait-shoot.jpg",
-                description: "A recent studio session I completed.",
-                link: "#"
+                link: "https://example.com/project6"
             }
         ];
 
@@ -261,13 +291,18 @@
                 : projects.filter(p => p.category === filter);
 
             filtered.forEach(project => {
-                // Determine span classes based on aspect ratio (simulated by image placeholder height)
+                // Determine span classes based on aspect ratio
                 const isTall = project.image.includes('1000');
                 const spanClass = isTall ? 'md:row-span-2' : '';
 
-                // Added aspect ratio sizing to prevent shrinking, and an 'onerror' fallback for missing images!
+                // Check if project has a GLB file to trigger modal, otherwise use normal link
+                const clickAction = project.glb 
+                    ? `onclick="event.preventDefault(); openGLBModal('${project.glb}', '${project.title.replace(/'/g, "\\'")}')" href="#"` 
+                    : `href="${project.link || '#'}" target="_blank" rel="noopener noreferrer"`;
+
+                // Added missing image fallback and enforced aspect ratio to prevent collapsing
                 const cardHTML = `
-                    <a href="${project.link || '#'}" target="_blank" rel="noopener noreferrer" class="group block relative cursor-pointer fade-in ${spanClass}">
+                    <a ${clickAction} class="group block relative cursor-pointer fade-in ${spanClass}">
                         <div class="img-zoom-container rounded-sm bg-brand-cream border border-brand-yellow/20 w-full aspect-square sm:aspect-[4/5]">
                             <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x1000/003049/FCBF49?text=Missing+Image';">
                         </div>
@@ -277,7 +312,7 @@
                             <p class="text-brand-cream/80 text-sm mb-6">${project.description}</p>
                             
                             <span class="inline-flex items-center gap-2 text-xs font-bold text-brand-orange uppercase tracking-wide border-b border-brand-orange pb-0.5">
-                                View Project
+                                ${project.glb ? 'View 3D Model' : 'View Project'}
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </span>
                         </div>
@@ -320,6 +355,65 @@
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
+        });
+
+        // --- GLB Modal Logic ---
+        const glbModal = document.getElementById('glb-modal');
+        const modalViewer = document.getElementById('modal-model-viewer');
+        const modalTitle = document.getElementById('modal-title');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        // Function called when a 3D project tile is clicked
+        window.openGLBModal = (glbSrc, title) => {
+            modalTitle.innerText = title;
+            modalViewer.src = glbSrc; // Load the 3D model
+            
+            // Show the modal
+            glbModal.classList.remove('hidden');
+            setTimeout(() => {
+                glbModal.classList.remove('opacity-0');
+            }, 10);
+            
+            // Prevent background scrolling while modal is open
+            document.body.style.overflow = 'hidden'; 
+        };
+
+        // Close modal function
+        const closeGLBModal = () => {
+            glbModal.classList.add('opacity-0');
+            setTimeout(() => {
+                glbModal.classList.add('hidden');
+                modalViewer.src = ''; // Clear the model from memory
+                document.body.style.overflow = ''; // Restore scrolling
+            }, 300); // Matches CSS transition duration
+        };
+
+        closeModalBtn.addEventListener('click', closeGLBModal);
+        
+        // Close modal if user clicks outside the 3D viewer (on the dark background)
+        glbModal.addEventListener('click', (e) => {
+            if (e.target === glbModal) closeGLBModal();
+        });
+
+        // --- Hero Scroll Blur & Parallax Effect ---
+        const heroContent = document.getElementById('hero-content');
+        
+        window.addEventListener('scroll', () => {
+            if (!heroContent) return;
+            const scrollY = window.scrollY;
+            
+            // Only run the calculation if we are near the top of the page (saves browser performance)
+            if (scrollY < window.innerHeight) {
+                // Calculate how much to blur and fade based on scroll depth
+                const blurAmount = Math.min(scrollY / 25, 20); // Blurs up to 20px
+                const opacityAmount = Math.max(1 - (scrollY / 400), 0); // Fades out completely after 400px of scrolling
+                const yOffset = scrollY * 0.3; // Moves the text down slightly slower than you scroll (Parallax)
+                
+                // Apply the styles dynamically
+                heroContent.style.transform = `translateY(${yOffset}px)`;
+                heroContent.style.opacity = opacityAmount.toString();
+                heroContent.style.filter = `blur(${blurAmount}px)`;
+            }
         });
     </script>
 </body>
