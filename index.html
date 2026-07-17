@@ -265,11 +265,11 @@
                 const isTall = project.image.includes('1000');
                 const spanClass = isTall ? 'md:row-span-2' : '';
 
-                // Changed the outer wrapper from a <div> to an <a> tag and added a "View" indicator
+                // Added aspect ratio sizing to prevent shrinking, and an 'onerror' fallback for missing images!
                 const cardHTML = `
                     <a href="${project.link || '#'}" target="_blank" rel="noopener noreferrer" class="group block relative cursor-pointer fade-in ${spanClass}">
-                        <div class="img-zoom-container rounded-sm bg-brand-cream border border-brand-yellow/20 h-full w-full">
-                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                        <div class="img-zoom-container rounded-sm bg-brand-cream border border-brand-yellow/20 w-full aspect-square sm:aspect-[4/5]">
+                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x1000/003049/FCBF49?text=Missing+Image';">
                         </div>
                         <div class="absolute inset-0 bg-brand-navy/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center rounded-sm">
                             <span class="text-xs font-bold uppercase tracking-widest text-brand-yellow mb-2">${project.categoryLabel}</span>
