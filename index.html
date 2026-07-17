@@ -186,11 +186,12 @@
         const projects = [
             {
                 id: 1,
-                title: "Serene Spaces",
+                title: "My First Blender Render",
                 category: "blender",
                 categoryLabel: "3D / Blender",
-                image: "https://placehold.co/800x600/003049/FCBF49?text=Interior+Render",
-                description: "Minimalist architectural visualization."
+                image: "images/my-render.jpg",
+                description: "This is my very first architectural visualization.",
+                link: "https://www.artstation.com/" // <-- Add a link property here!
             },
             {
                 id: 2,
@@ -198,7 +199,8 @@
                 category: "animation",
                 categoryLabel: "Animation",
                 image: "https://placehold.co/800x1000/D62828/EAE2B7?text=Motion+Graphics",
-                description: "Brand identity in motion."
+                description: "Brand identity in motion.",
+                link: "https://vimeo.com/" // <-- Add links to your actual live projects, videos, or posts
             },
             {
                 id: 3,
@@ -206,7 +208,8 @@
                 category: "photography",
                 categoryLabel: "Photography",
                 image: "https://placehold.co/800x800/F77F00/003049?text=Street+Photography",
-                description: "Exploring shapes in the city."
+                description: "Exploring shapes in the city.",
+                link: "https://instagram.com/" 
             },
             {
                 id: 4,
@@ -214,7 +217,8 @@
                 category: "graphic",
                 categoryLabel: "Graphic Design",
                 image: "https://placehold.co/800x600/FCBF49/003049?text=Brand+Identity",
-                description: "Clean packaging and brand guidelines."
+                description: "Clean packaging and brand guidelines.",
+                link: "#" // Use "#" if you don't have a link yet
             },
             {
                 id: 5,
@@ -222,7 +226,8 @@
                 category: "blender",
                 categoryLabel: "3D / Animation",
                 image: "https://placehold.co/800x800/EAE2B7/D62828?text=3D+Abstract",
-                description: "Satisfying seamless physics loops."
+                description: "Satisfying seamless physics loops.",
+                link: "#"
             },
             {
                 id: 6,
@@ -230,7 +235,17 @@
                 category: "graphic",
                 categoryLabel: "Graphic Design",
                 image: "https://placehold.co/800x1000/003049/F77F00?text=Print+Design",
-                description: "Magazine layout focused on typography."
+                description: "Magazine layout focused on typography.",
+                link: "#"
+            },
+            {
+                id: 7, 
+                title: "My Brand New Photo Shoot",
+                category: "photography", 
+                categoryLabel: "Portrait Photography",
+                image: "images/portrait-shoot.jpg",
+                description: "A recent studio session I completed.",
+                link: "#"
             }
         ];
 
@@ -250,17 +265,23 @@
                 const isTall = project.image.includes('1000');
                 const spanClass = isTall ? 'md:row-span-2' : '';
 
+                // Changed the outer wrapper from a <div> to an <a> tag and added a "View" indicator
                 const cardHTML = `
-                    <div class="group relative cursor-pointer fade-in ${spanClass}">
+                    <a href="${project.link || '#'}" target="_blank" rel="noopener noreferrer" class="group block relative cursor-pointer fade-in ${spanClass}">
                         <div class="img-zoom-container rounded-sm bg-brand-cream border border-brand-yellow/20 h-full w-full">
                             <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
                         </div>
                         <div class="absolute inset-0 bg-brand-navy/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center rounded-sm">
                             <span class="text-xs font-bold uppercase tracking-widest text-brand-yellow mb-2">${project.categoryLabel}</span>
                             <h3 class="text-2xl font-bold mb-2 text-brand-cream">${project.title}</h3>
-                            <p class="text-brand-cream/80 text-sm">${project.description}</p>
+                            <p class="text-brand-cream/80 text-sm mb-6">${project.description}</p>
+                            
+                            <span class="inline-flex items-center gap-2 text-xs font-bold text-brand-orange uppercase tracking-wide border-b border-brand-orange pb-0.5">
+                                View Project
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </span>
                         </div>
-                    </div>
+                    </a>
                 `;
                 grid.insertAdjacentHTML('beforeend', cardHTML);
             });
