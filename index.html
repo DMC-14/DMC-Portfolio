@@ -229,8 +229,7 @@
                 categoryLabel: "3D / Blender",
                 image: "images/Campus.png",
                 description: "Minimalist architectural visualization.",
-                link: "https://dmc-14.github.io/Virtual_Campus/", // Fixed missing comma here!
-                glb: "models/Old_Sagay_Campus.glb" // Optional GLB model for 3D view
+                link: "https://dmc-14.github.io/Virtual_Campus/"
             },
             {
                 id: 2,
@@ -291,19 +290,16 @@
                 : projects.filter(p => p.category === filter);
 
             filtered.forEach(project => {
-                // Determine span classes based on aspect ratio
                 const isTall = project.image.includes('1000');
                 const spanClass = isTall ? 'md:row-span-2' : '';
 
-                // Check if project has a GLB file to trigger modal, otherwise use normal link
                 const clickAction = project.glb 
                     ? `onclick="event.preventDefault(); openGLBModal('${project.glb}', '${project.title.replace(/'/g, "\\'")}')" href="#"` 
                     : `href="${project.link || '#'}" target="_blank" rel="noopener noreferrer"`;
 
-                // Added missing image fallback and enforced aspect ratio to prevent collapsing
                 const cardHTML = `
-                    <a ${clickAction} class="group block relative cursor-pointer fade-in ${spanClass}">
-                        <div class="img-zoom-container rounded-sm bg-brand-cream border border-brand-yellow/20 w-full aspect-square sm:aspect-[4/5]">
+                    <a ${clickAction} class="group block relative h-full cursor-pointer fade-in ${spanClass}">
+                        <div class="img-zoom-container rounded-sm bg-brand-cream border border-brand-yellow/20 w-full h-full min-h-[300px] sm:min-h-[400px]">
                             <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x1000/003049/FCBF49?text=Missing+Image';">
                         </div>
                         <div class="absolute inset-0 bg-brand-navy/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center rounded-sm">
