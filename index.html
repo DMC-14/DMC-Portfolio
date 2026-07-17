@@ -195,18 +195,10 @@
 
     <!-- 3D Model Lightbox Modal -->
     <div id="glb-modal" class="fixed inset-0 z-[100] hidden bg-brand-navy/95 backdrop-blur-md flex items-center justify-center opacity-0 transition-opacity duration-300">
-        
-        <!-- Refresh Button -->
-        <button id="refresh-model-btn" class="absolute top-6 left-6 md:top-10 md:left-10 text-brand-cream hover:text-brand-orange transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider z-50">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-            Refresh
-        </button>
-
         <button id="close-modal-btn" class="absolute top-6 right-6 md:top-10 md:right-10 text-brand-cream hover:text-brand-orange transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider z-50">
             Close 
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        
         <div class="w-full max-w-5xl h-[80vh] flex flex-col items-center px-4 relative">
             <h3 id="modal-title" class="text-brand-yellow text-2xl font-bold mb-4 tracking-tight"></h3>
             
@@ -221,16 +213,6 @@
                     shadow-intensity="1"
                     exposure="1"
                     class="w-full h-full outline-none cursor-grab active:cursor-grabbing">
-                    
-                    <!-- Loading Screen & Progress Bar -->
-                    <div slot="progress-bar" class="absolute inset-0 flex flex-col items-center justify-center bg-brand-navy/90 backdrop-blur-sm z-10 transition-opacity duration-300" id="loading-screen">
-                        <div class="w-12 h-12 border-4 border-brand-yellow/30 border-t-brand-yellow rounded-full animate-spin mb-4"></div>
-                        <div class="text-brand-cream text-sm font-bold tracking-widest uppercase mb-2">Loading Model...</div>
-                        <div class="w-48 h-1 bg-brand-cream/20 rounded-full overflow-hidden">
-                            <div id="loading-progress" class="h-full bg-brand-orange w-0 transition-all duration-300"></div>
-                        </div>
-                    </div>
-
                 </model-viewer>
             </div>
             <p class="text-brand-cream/60 text-xs mt-4 uppercase tracking-widest text-center">Use mouse or touch to rotate and zoom</p>
@@ -247,8 +229,8 @@
                 categoryLabel: "3D / Blender",
                 image: "images/Campus.png",
                 description: "Minimalist architectural visualization.",
-                link: "https://dmc-14.github.io/Virtual_Campus/", 
-                glb: "models/Old_Sagay_Campus.glb" 
+                link: "https://dmc-14.github.io/Virtual_Campus/", // Fixed missing comma here!
+                glb: "models/Old_Sagay_Campus.glb" // Optional GLB model for 3D view
             },
             {
                 id: 2,
@@ -309,13 +291,16 @@
                 : projects.filter(p => p.category === filter);
 
             filtered.forEach(project => {
+                // Determine span classes based on aspect ratio
                 const isTall = project.image.includes('1000');
                 const spanClass = isTall ? 'md:row-span-2' : '';
 
+                // Check if project has a GLB file to trigger modal, otherwise use normal link
                 const clickAction = project.glb 
                     ? `onclick="event.preventDefault(); openGLBModal('${project.glb}', '${project.title.replace(/'/g, "\\'")}')" href="#"` 
                     : `href="${project.link || '#'}" target="_blank" rel="noopener noreferrer"`;
 
+                // Added missing image fallback and enforced aspect ratio to prevent collapsing
                 const cardHTML = `
                     <a ${clickAction} class="group block relative cursor-pointer fade-in ${spanClass}">
                         <div class="img-zoom-container rounded-sm bg-brand-cream border border-brand-yellow/20 w-full aspect-square sm:aspect-[4/5]">
@@ -337,11 +322,13 @@
             });
         }
 
+        // --- Initialize Grid ---
         renderProjects();
 
         // --- Filter Logic ---
         filterBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
+                // Update active button styling
                 filterBtns.forEach(b => {
                     b.classList.remove('bg-brand-navy', 'text-brand-cream');
                     b.classList.add('bg-white/50', 'text-brand-navy/70');
@@ -349,6 +336,7 @@
                 e.target.classList.remove('bg-white/50', 'text-brand-navy/70');
                 e.target.classList.add('bg-brand-navy', 'text-brand-cream');
 
+                // Filter grid
                 const filterValue = e.target.getAttribute('data-filter');
                 renderProjects(filterValue);
             });
@@ -362,6 +350,7 @@
             mobileMenu.classList.toggle('hidden');
         });
 
+        // Close mobile menu on link click
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
@@ -373,55 +362,58 @@
         const modalViewer = document.getElementById('modal-model-viewer');
         const modalTitle = document.getElementById('modal-title');
         const closeModalBtn = document.getElementById('close-modal-btn');
-        const refreshModelBtn = document.getElementById('refresh-model-btn');
-        const loadingProgress = document.getElementById('loading-progress');
 
-        // 1. Let the component handle showing/hiding the slot natively.
-        // We only update the width of the orange bar.
-        modalViewer.addEventListener('progress', (event) => {
-            const progress = event.detail.totalProgress * 100;
-            loadingProgress.style.width = `${progress}%`;
-        });
-
+        // Function called when a 3D project tile is clicked
         window.openGLBModal = (glbSrc, title) => {
             modalTitle.innerText = title;
-            loadingProgress.style.width = '0%'; // Reset bar width
+            modalViewer.src = glbSrc; // Load the 3D model
             
-            modalViewer.src = glbSrc;
-            
+            // Show the modal
             glbModal.classList.remove('hidden');
             setTimeout(() => {
                 glbModal.classList.remove('opacity-0');
             }, 10);
             
+            // Prevent background scrolling while modal is open
             document.body.style.overflow = 'hidden'; 
         };
 
+        // Close modal function
         const closeGLBModal = () => {
             glbModal.classList.add('opacity-0');
             setTimeout(() => {
                 glbModal.classList.add('hidden');
-                modalViewer.removeAttribute('src'); 
-                document.body.style.overflow = ''; 
-            }, 300); 
+                modalViewer.src = ''; // Clear the model from memory
+                document.body.style.overflow = ''; // Restore scrolling
+            }, 300); // Matches CSS transition duration
         };
-        
-        refreshModelBtn.addEventListener('click', () => {
-            const currentSrc = modalViewer.getAttribute('src');
-            if (!currentSrc) return;
-            
-            modalViewer.removeAttribute('src'); 
-            loadingProgress.style.width = '0%';
-            
-            setTimeout(() => {
-                modalViewer.src = currentSrc; 
-            }, 50);
-        });
 
         closeModalBtn.addEventListener('click', closeGLBModal);
         
+        // Close modal if user clicks outside the 3D viewer (on the dark background)
         glbModal.addEventListener('click', (e) => {
             if (e.target === glbModal) closeGLBModal();
+        });
+
+        // --- Hero Scroll Blur & Parallax Effect ---
+        const heroContent = document.getElementById('hero-content');
+        
+        window.addEventListener('scroll', () => {
+            if (!heroContent) return;
+            const scrollY = window.scrollY;
+            
+            // Only run the calculation if we are near the top of the page (saves browser performance)
+            if (scrollY < window.innerHeight) {
+                // Calculate how much to blur and fade based on scroll depth
+                const blurAmount = Math.min(scrollY / 25, 20); // Blurs up to 20px
+                const opacityAmount = Math.max(1 - (scrollY / 400), 0); // Fades out completely after 400px of scrolling
+                const yOffset = scrollY * 0.3; // Moves the text down slightly slower than you scroll (Parallax)
+                
+                // Apply the styles dynamically
+                heroContent.style.transform = `translateY(${yOffset}px)`;
+                heroContent.style.opacity = opacityAmount.toString();
+                heroContent.style.filter = `blur(${blurAmount}px)`;
+            }
         });
     </script>
 </body>
