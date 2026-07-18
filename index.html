@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Added Favicon for the browser tab -->
+    <link rel="icon" type="image/png" href="images/My_Logo.png">
+    
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -60,7 +63,13 @@
 
     <header class="fixed top-0 w-full bg-brand-cream/90 backdrop-blur-md z-50 border-b border-brand-yellow/30">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex justify-between items-center">
-            <a href="#" class="text-xl font-semibold tracking-tight text-brand-navy">Daniel Cabanas.</a>
+            <!-- Brand Name and Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <!-- Change 'images/logo.png' if your logo file has a different name -->
+                <img src="images/My_Logo.png" alt="Daniel Cabanas Logo" class="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='https://placehold.co/100x100/003049/FCBF49?text=DC';">
+                <span class="text-xl font-semibold tracking-tight text-brand-navy">Daniel Cabanas.</span>
+            </a>
+            
             
             <!-- Desktop Nav -->
             <nav class="hidden md:flex gap-8 text-sm font-medium text-brand-navy/70">
