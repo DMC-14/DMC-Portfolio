@@ -25,8 +25,8 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        bgDark: '#08090C',
-                        cardDark: 'rgba(18, 20, 28, 0.65)',
+                        bgDark: '#07080B',
+                        cardDark: 'rgba(14, 16, 23, 0.75)',
                         borderDark: 'rgba(255, 255, 255, 0.08)',
                     },
                     backgroundImage: {
@@ -39,12 +39,12 @@
     <style>
         /* Custom Dark Cyber Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #08090C; }
+        ::-webkit-scrollbar-track { background: #07080B; }
         ::-webkit-scrollbar-thumb { background: #1f2330; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+        ::-webkit-scrollbar-thumb:hover { background: #f97316; }
         
         .bg-grid { background-size: 40px 40px; }
-        .glow-sphere { filter: blur(130px); pointer-events: none; }
+        .glow-sphere { filter: blur(140px); pointer-events: none; }
         
         .fade-in {
             animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -54,14 +54,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Subtle Card Hover 3D Lift */
+        /* Subtle Card Hover 3D Lift with Orange/Blue Glow */
         .card-hover {
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .card-hover:hover {
             transform: translateY(-4px) scale(1.01);
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: 0 16px 35px -10px rgba(99, 102, 241, 0.25);
+            border-color: rgba(249, 115, 22, 0.45);
+            box-shadow: 0 16px 35px -10px rgba(249, 115, 22, 0.2);
         }
 
         .img-zoom-container { overflow: hidden; }
@@ -73,12 +73,12 @@
         }
     </style>
 </head>
-<body class="bg-bgDark text-gray-200 font-sans antialiased selection:bg-indigo-500 selection:text-white relative overflow-x-hidden">
+<body class="bg-bgDark text-gray-200 font-sans antialiased selection:bg-orange-500 selection:text-white relative overflow-x-hidden">
 
-    <!-- Ambient Glowing Background Spheres -->
-    <div class="fixed top-[-10%] left-[10%] w-[500px] h-[500px] rounded-full bg-indigo-600/15 glow-sphere z-0"></div>
-    <div class="fixed top-[35%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-500/10 glow-sphere z-0"></div>
-    <div class="fixed bottom-[-10%] left-[25%] w-[500px] h-[500px] rounded-full bg-purple-600/15 glow-sphere z-0"></div>
+    <!-- Ambient Glowing Background Spheres (Fusion AI Orange Left / Electric Blue Right) -->
+    <div class="fixed top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full bg-orange-600/20 glow-sphere z-0"></div>
+    <div class="fixed top-[20%] right-[-10%] w-[650px] h-[650px] rounded-full bg-blue-600/20 glow-sphere z-0"></div>
+    <div class="fixed bottom-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-amber-600/15 glow-sphere z-0"></div>
 
     <!-- Background Technical Grid Layer -->
     <div class="fixed inset-0 bg-grid-pattern bg-grid z-0 pointer-events-none"></div>
@@ -88,8 +88,8 @@
         <div class="max-w-6xl mx-auto px-5 py-3.5 rounded-2xl bg-cardDark backdrop-blur-xl border border-borderDark shadow-2xl flex justify-between items-center">
             <!-- Brand Name and Logo -->
             <a href="#" class="flex items-center gap-3 group">
-                <img src="images/My_Logo.png" alt="Daniel Cabanas Logo" class="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='https://placehold.co/100x100/6366f1/ffffff?text=DC';">
-                <span class="text-lg font-bold tracking-tight text-white group-hover:text-indigo-400 transition-colors">Daniel Cabanas<span class="text-indigo-400">.</span></span>
+                <img src="images/My_Logo.png" alt="Daniel Cabanas Logo" class="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='https://placehold.co/100x100/f97316/ffffff?text=DC';">
+                <span class="text-lg font-bold tracking-tight text-white group-hover:text-orange-400 transition-colors">Daniel Cabanas<span class="text-orange-500">.</span></span>
             </a>
             
             <!-- Desktop Nav -->
@@ -99,8 +99,8 @@
                 <a href="#contact" class="hover:text-white transition-colors">Contact</a>
             </nav>
 
-            <!-- CTA Button -->
-            <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 shadow-md shadow-indigo-600/30 transition-all">
+            <!-- CTA Button (Template Glowing Border Style) -->
+            <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-white/[0.05] hover:bg-orange-500/10 border border-orange-500/40 hover:border-orange-500 shadow-lg shadow-orange-500/10 transition-all">
                 <span>Get in Touch</span>
             </a>
 
@@ -113,10 +113,10 @@
         </div>
         
         <!-- Mobile Nav Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden mt-2 max-w-6xl mx-auto bg-[#0E1017]/95 backdrop-blur-xl border border-borderDark rounded-2xl px-6 py-5 space-y-4 shadow-2xl">
-            <a href="#work" class="block text-gray-300 hover:text-indigo-400 font-medium">Work</a>
-            <a href="#about" class="block text-gray-300 hover:text-indigo-400 font-medium">About</a>
-            <a href="#contact" class="block text-gray-300 hover:text-indigo-400 font-medium">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden mt-2 max-w-6xl mx-auto bg-[#0A0C10]/95 backdrop-blur-xl border border-borderDark rounded-2xl px-6 py-5 space-y-4 shadow-2xl">
+            <a href="#work" class="block text-gray-300 hover:text-orange-400 font-medium">Work</a>
+            <a href="#about" class="block text-gray-300 hover:text-orange-400 font-medium">About</a>
+            <a href="#contact" class="block text-gray-300 hover:text-orange-400 font-medium">Contact</a>
         </div>
     </header>
 
@@ -124,7 +124,7 @@
     <section id="hero" class="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden z-10">
         <!-- Background Image with Cyber Blend -->
         <div class="absolute inset-0 w-full h-full -z-20">
-            <img src="images/BG.jpg" alt="Hero Background" class="w-full h-full object-cover object-[75%_center] md:object-center opacity-25 mix-blend-luminosity" id="hero-bg-img">
+            <img src="images/BG.jpg" alt="Hero Background" class="w-full h-full object-cover object-[75%_center] md:object-center opacity-20 mix-blend-luminosity" id="hero-bg-img">
         </div>
         
         <!-- Dark Gradient Overlay for Contrast -->
@@ -134,24 +134,27 @@
         <!-- Content Container -->
         <div class="px-6 lg:px-12 max-w-6xl mx-auto w-full relative z-10">
             <div id="hero-content" class="max-w-3xl fade-in will-change-transform space-y-6">
-                <!-- Status Badge -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs text-indigo-300 backdrop-blur-md">
-                    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                <!-- Status Badge (Fusion AI Pill Style) -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-orange-500/30 text-xs text-orange-300 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
                     <span class="uppercase tracking-widest font-semibold">Hello, I'm a Multidisciplinary Creative.</span>
                 </div>
 
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.08] text-white">
                     Crafting visual stories through 
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">Blender</span>, 
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Animation</span>, 
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">Photography</span>, &amp; 
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-amber-500">Blender</span>, 
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-sky-400">Animation</span>, 
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-orange-400 to-blue-400">Photography</span>, &amp; 
                     <span class="text-gray-300">Design</span>.
                 </h1>
 
-                <div class="pt-4">
-                    <a href="#work" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-medium text-sm text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/25 transition-all">
+                <div class="pt-4 flex flex-wrap gap-4">
+                    <a href="#work" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-medium text-sm text-white bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 shadow-lg shadow-orange-500/25 border border-orange-500/50 transition-all">
                         <span>Explore my work</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </a>
+                    <a href="#about" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-medium text-sm text-gray-300 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all">
+                        <span>About Me</span>
                     </a>
                 </div>
             </div>
@@ -162,13 +165,13 @@
     <section id="work" class="py-24 px-6 lg:px-12 max-w-6xl mx-auto relative z-10 border-t border-white/10">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-                <span class="text-xs font-semibold uppercase tracking-widest text-indigo-400 block mb-2">Portfolio</span>
+                <span class="text-xs font-semibold uppercase tracking-widest text-orange-400 block mb-2">Portfolio</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Selected Works</h2>
             </div>
             
             <!-- Filters -->
             <div class="flex flex-wrap gap-2 md:gap-3" id="filters">
-                <button class="filter-btn active px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 border border-transparent transition-all" data-filter="all">All</button>
+                <button class="filter-btn active px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-lg shadow-orange-500/30 border border-orange-500/40 transition-all" data-filter="all">All</button>
                 <button class="filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-white/[0.05] border border-white/10 text-gray-400 hover:text-white hover:bg-white/[0.1] transition-all" data-filter="blender">Blender</button>
                 <button class="filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-white/[0.05] border border-white/10 text-gray-400 hover:text-white hover:bg-white/[0.1] transition-all" data-filter="animation">Animation</button>
                 <button class="filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-white/[0.05] border border-white/10 text-gray-400 hover:text-white hover:bg-white/[0.1] transition-all" data-filter="photography">Photography</button>
@@ -189,15 +192,15 @@
             <!-- Profile Column (Bento Glass Card) -->
             <div class="md:col-span-5 relative">
                 <div class="p-3 rounded-3xl bg-cardDark border border-borderDark shadow-2xl relative group overflow-hidden">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                    <img src="https://placehold.co/800x1000/0E1017/6366f1?text=Profile+Photo" alt="Profile" class="w-full h-auto object-cover rounded-2xl relative z-10 grayscale group-hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 to-blue-500 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+                    <img src="https://placehold.co/800x1000/0A0C10/f97316?text=Profile+Photo" alt="Profile" class="w-full h-auto object-cover rounded-2xl relative z-10 grayscale group-hover:grayscale-0 transition-all duration-700">
                 </div>
             </div>
 
             <!-- Copy Column -->
             <div class="md:col-span-7 space-y-6">
                 <div>
-                    <span class="text-xs font-semibold uppercase tracking-widest text-indigo-400 block mb-2">Background</span>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-orange-400 block mb-2">Background</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">About Me</h2>
                 </div>
                 
@@ -211,19 +214,19 @@
                 <!-- Capabilities & Tools Bento Boxes -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
                     <div class="p-6 rounded-2xl bg-cardDark border border-borderDark">
-                        <h3 class="font-bold text-cyan-400 mb-3 border-b border-white/10 pb-2.5 uppercase tracking-wider text-xs">Capabilities</h3>
+                        <h3 class="font-bold text-orange-400 mb-3 border-b border-white/10 pb-2.5 uppercase tracking-wider text-xs">Capabilities</h3>
                         <ul class="text-gray-300 space-y-2 text-sm font-medium">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>3D Modeling &amp; Rendering</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Editorial Photography</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>UI/UX Prototyping</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>3D Modeling &amp; Rendering</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>Editorial Photography</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>UI/UX Prototyping</li>
                         </ul>
                     </div>
                     <div class="p-6 rounded-2xl bg-cardDark border border-borderDark">
-                        <h3 class="font-bold text-indigo-400 mb-3 border-b border-white/10 pb-2.5 uppercase tracking-wider text-xs">Tools</h3>
+                        <h3 class="font-bold text-blue-400 mb-3 border-b border-white/10 pb-2.5 uppercase tracking-wider text-xs">Tools</h3>
                         <ul class="text-gray-300 space-y-2 text-sm font-medium">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>Blender</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>Adobe Lightroom</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>GitHub</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>Blender</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>Adobe Lightroom</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>GitHub</li>
                         </ul>
                     </div>
                 </div>
@@ -235,19 +238,19 @@
     <!-- Contact Section -->
     <section id="contact" class="py-28 px-6 lg:px-12 max-w-5xl mx-auto text-center relative overflow-hidden z-10">
         <!-- Ambient section glow -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-600/20 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-orange-600/15 rounded-full blur-[100px] pointer-events-none -z-10"></div>
 
         <div class="p-8 sm:p-14 rounded-3xl bg-cardDark border border-borderDark shadow-2xl backdrop-blur-xl space-y-6">
-            <span class="text-xs font-semibold uppercase tracking-widest text-indigo-400">Next Steps</span>
+            <span class="text-xs font-semibold uppercase tracking-widest text-orange-400">Next Steps</span>
             <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">Let's create something together.</h2>
             <p class="text-gray-400 max-w-xl mx-auto text-base sm:text-lg">
                 Available for opportunities. If you have an idea in mind, or just want to say hi, feel free to reach out.
             </p>
             
             <div class="pt-4">
-                <a href="mailto:cabanasdaniel395@gmail.com" class="inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white px-8 py-4 rounded-xl font-bold tracking-wide transition-all shadow-lg shadow-indigo-500/30 hover:scale-[1.02]">
+                <a href="mailto:cabanasdaniel395@gmail.com" class="inline-flex items-center gap-3 bg-gradient-to-r from-orange-600 via-amber-600 to-blue-600 hover:from-orange-500 hover:to-blue-500 text-white px-8 py-4 rounded-xl font-bold tracking-wide transition-all shadow-lg shadow-orange-500/25 border border-orange-500/40 hover:scale-[1.02]">
                     <span>cabanasdaniel395@gmail.com</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7-7m7-7H3"></path></svg>
                 </a>
             </div>
         </div>
@@ -268,7 +271,7 @@
             <h3 id="modal-title" class="text-white text-2xl font-bold mb-4 tracking-tight"></h3>
             
             <!-- model-viewer component -->
-            <div class="w-full h-full rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl bg-[#0E1017]/80">
+            <div class="w-full h-full rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl bg-[#0A0C10]/80">
                 <model-viewer 
                     id="modal-model-viewer" 
                     src="" 
@@ -319,7 +322,7 @@
                 title: "Aura Skincare",
                 category: "graphic",
                 categoryLabel: "Graphic Design",
-                image: "https://placehold.co/800x600/6366f1/ffffff?text=Brand+Identity",
+                image: "https://placehold.co/800x600/f97316/ffffff?text=Brand+Identity",
                 description: "Clean packaging and brand guidelines.",
                 link: "https://example.com/project4"
             },
@@ -328,7 +331,7 @@
                 title: "Abstract Loops",
                 category: "blender",
                 categoryLabel: "3D / Animation",
-                image: "https://placehold.co/800x800/00f2fe/08090C?text=3D+Abstract",
+                image: "https://placehold.co/800x800/2563eb/07080B?text=3D+Abstract",
                 description: "Satisfying seamless physics loops.",
                 link: "https://example.com/project5"
             },
@@ -337,7 +340,7 @@
                 title: "Editorial Spread",
                 category: "graphic",
                 categoryLabel: "Graphic Design",
-                image: "https://placehold.co/800x1000/a855f7/ffffff?text=Print+Design",
+                image: "https://placehold.co/800x1000/d97706/ffffff?text=Print+Design",
                 description: "Magazine layout focused on typography.",
                 link: "https://example.com/project6"
             }
@@ -346,7 +349,7 @@
         const grid = document.getElementById('portfolio-grid');
         const filterBtns = document.querySelectorAll('.filter-btn');
 
-        // --- Render Projects Function (Updated for Dark Glassmorphism) ---
+        // --- Render Projects Function (Updated for Warm Orange/Blue Accents) ---
         function renderProjects(filter = 'all') {
             grid.innerHTML = ''; 
             
@@ -364,17 +367,17 @@
 
                 const cardHTML = `
                     <a ${clickAction} class="group block relative h-full cursor-pointer fade-in rounded-2xl bg-cardDark border border-borderDark overflow-hidden card-hover ${spanClass}">
-                        <div class="img-zoom-container w-full h-full min-h-[300px] sm:min-h-[380px] bg-[#0E1017]">
-                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x1000/12141c/6366f1?text=Missing+Image';">
+                        <div class="img-zoom-container w-full h-full min-h-[300px] sm:min-h-[380px] bg-[#0A0C10]">
+                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x1000/0e1017/f97316?text=Missing+Image';">
                         </div>
                         
                         <!-- Dark Frosted Hover Overlay -->
                         <div class="absolute inset-0 bg-bgDark/90 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center items-center p-6 text-center">
-                            <span class="text-xs font-semibold uppercase tracking-widest text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full mb-3">${project.categoryLabel}</span>
-                            <h3 class="text-2xl font-extrabold mb-2 text-white group-hover:text-cyan-300 transition-colors">${project.title}</h3>
+                            <span class="text-xs font-semibold uppercase tracking-widest text-orange-400 bg-orange-500/10 border border-orange-500/30 px-3 py-1 rounded-full mb-3">${project.categoryLabel}</span>
+                            <h3 class="text-2xl font-extrabold mb-2 text-white group-hover:text-amber-300 transition-colors">${project.title}</h3>
                             <p class="text-gray-400 text-sm mb-6 max-w-xs">${project.description}</p>
                             
-                            <span class="inline-flex items-center gap-2 text-xs font-bold text-white bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl border border-white/10 transition-all">
+                            <span class="inline-flex items-center gap-2 text-xs font-bold text-white bg-white/10 hover:bg-orange-500/20 px-4 py-2 rounded-xl border border-white/10 hover:border-orange-500/40 transition-all">
                                 <span>${project.glb ? 'View 3D Model' : 'View Project'}</span>
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </span>
@@ -388,15 +391,15 @@
         // --- Initialize Grid ---
         renderProjects();
 
-        // --- Filter Logic (Updated with Neon Styling) ---
+        // --- Filter Logic (Updated with Warm Orange/Amber Styling) ---
         filterBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 filterBtns.forEach(b => {
-                    b.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-500/30', 'border-transparent');
+                    b.classList.remove('bg-gradient-to-r', 'from-orange-600', 'to-amber-600', 'text-white', 'shadow-lg', 'shadow-orange-500/30', 'border-orange-500/40');
                     b.classList.add('bg-white/[0.05]', 'border-white/10', 'text-gray-400');
                 });
                 e.target.classList.remove('bg-white/[0.05]', 'border-white/10', 'text-gray-400');
-                e.target.classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-500/30', 'border-transparent');
+                e.target.classList.add('bg-gradient-to-r', 'from-orange-600', 'to-amber-600', 'text-white', 'shadow-lg', 'shadow-orange-500/30', 'border-orange-500/40');
 
                 const filterValue = e.target.getAttribute('data-filter');
                 renderProjects(filterValue);
