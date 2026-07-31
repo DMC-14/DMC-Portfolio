@@ -99,7 +99,7 @@
                 <a href="#contact" class="hover:text-white transition-colors">Contact</a>
             </nav>
 
-            <!-- CTA Button (Template Glowing Border Style) -->
+            <!-- CTA Button -->
             <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-white/[0.05] hover:bg-orange-500/10 border border-orange-500/40 hover:border-orange-500 shadow-lg shadow-orange-500/10 transition-all">
                 <span>Get in Touch</span>
             </a>
@@ -134,7 +134,7 @@
         <!-- Content Container -->
         <div class="px-6 lg:px-12 max-w-6xl mx-auto w-full relative z-10">
             <div id="hero-content" class="max-w-3xl fade-in will-change-transform space-y-6">
-                <!-- Status Badge (Fusion AI Pill Style) -->
+                <!-- Status Badge -->
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-orange-500/30 text-xs text-orange-300 backdrop-blur-md">
                     <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
                     <span class="uppercase tracking-widest font-semibold">Hello, I'm a Multidisciplinary Creative.</span>
@@ -193,7 +193,7 @@
             <div class="md:col-span-5 relative">
                 <div class="p-3 rounded-3xl bg-cardDark border border-borderDark shadow-2xl relative group overflow-hidden">
                     <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 to-blue-500 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
-                    <img src="https://placehold.co/800x1000/0A0C10/f97316?text=Profile+Photo" alt="Profile" class="w-full h-auto object-cover rounded-2xl relative z-10 grayscale group-hover:grayscale-0 transition-all duration-700">
+                    <img src="images/pf.png" alt="Profile" class="w-full h-auto object-cover rounded-2xl relative z-10 grayscale group-hover:grayscale-0 transition-all duration-700">
                 </div>
             </div>
 
@@ -205,7 +205,7 @@
                 </div>
                 
                 <p class="text-gray-300 leading-relaxed text-base sm:text-lg">
-                    I am a visual artist bridging the gap between digital dimensions and physical realities. With a foundation in traditional photography and graphic design, I've expanded my toolkit to include 3D modeling in Blender and Photography.
+                    Hi! My Name is Daniel, I am a visual artist bridging the gap between digital dimensions and physical realities. With a foundation in traditional photography and graphic design, I've expanded my toolkit to include 3D modeling in Blender and Photography.
                 </p>
                 <p class="text-gray-400 leading-relaxed text-base sm:text-lg">
                     My approach is deeply rooted in minimalism—stripping away the unnecessary to let the core message shine. Whether framing a photograph or rendering a 3D scene, I focus on composition, lighting, and texture.
@@ -237,7 +237,6 @@
 
     <!-- Contact Section -->
     <section id="contact" class="py-28 px-6 lg:px-12 max-w-5xl mx-auto text-center relative overflow-hidden z-10">
-        <!-- Ambient section glow -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-orange-600/15 rounded-full blur-[100px] pointer-events-none -z-10"></div>
 
         <div class="p-8 sm:p-14 rounded-3xl bg-cardDark border border-borderDark shadow-2xl backdrop-blur-xl space-y-6">
@@ -256,21 +255,83 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-8 text-center text-gray-500 text-xs border-t border-white/10 relative z-10">
         <p>&copy; 2026 Daniel Cabanas. All rights reserved. Designed with intention.</p>
     </footer>
 
+    <!-- Image Gallery Lightbox Modal -->
+    <div id="gallery-modal" class="fixed inset-0 z-[110] hidden bg-bgDark/95 backdrop-blur-xl flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <button id="close-gallery-btn" class="absolute top-6 right-6 md:top-10 md:right-10 text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-widest z-50 bg-white/10 px-4 py-2 rounded-xl border border-white/10">
+            <span>Close</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        
+        <div class="w-full max-w-6xl h-[90vh] flex flex-col items-center px-4 relative justify-center">
+            <h3 id="gallery-title" class="text-white text-xl md:text-2xl font-bold mb-4 tracking-tight absolute top-2 left-4 md:top-0 md:left-0"></h3>
+            
+            <div class="relative w-full h-[75vh] flex items-center justify-center mt-8 md:mt-0">
+                <!-- Prev Button -->
+                <button id="prev-gallery-btn" class="absolute left-0 md:-left-12 z-10 p-3 text-white bg-black/40 hover:bg-orange-500 rounded-full backdrop-blur-md transition-all border border-white/10">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                
+                <!-- Image Container -->
+                <img id="gallery-image" src="" alt="Gallery Image" class="max-w-full max-h-full object-contain shadow-2xl transition-opacity duration-200">
+                
+                <!-- Next Button -->
+                <button id="next-gallery-btn" class="absolute right-0 md:-right-12 z-10 p-3 text-white bg-black/40 hover:bg-orange-500 rounded-full backdrop-blur-md transition-all border border-white/10">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+            
+            <!-- Indicator -->
+            <div class="mt-6 flex items-center gap-3">
+                <p id="gallery-counter" class="text-orange-400 text-sm font-bold tracking-widest uppercase bg-orange-500/10 px-4 py-1.5 rounded-full border border-orange-500/20"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Player Lightbox Modal -->
+    <div id="video-modal" class="fixed inset-0 z-[115] hidden bg-bgDark/95 backdrop-blur-xl flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <button id="close-video-btn" class="absolute top-6 right-6 md:top-10 md:right-10 text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-widest z-50 bg-white/10 px-4 py-2 rounded-xl border border-white/10">
+            <span>Close</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        
+        <div class="w-full max-w-5xl h-[80vh] flex flex-col items-center px-4 relative justify-center">
+            <!-- Grouped Title and Credits -->
+            <div class="absolute top-0 left-4 md:left-0 flex flex-col gap-1.5 z-10">
+                <h3 id="video-title" class="text-white text-xl md:text-2xl font-bold tracking-tight"></h3>
+                <p id="video-credits" class="text-gray-400 text-xs sm:text-sm font-medium tracking-wide"></p>
+            </div>
+            
+            <div class="w-full rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl bg-black flex items-center justify-center mt-16 md:mt-0">
+                <video id="modal-video-player" controls class="max-w-full max-h-[70vh] outline-none">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
     <!-- 3D Model Lightbox Modal -->
     <div id="glb-modal" class="fixed inset-0 z-[100] hidden bg-bgDark/95 backdrop-blur-xl flex items-center justify-center opacity-0 transition-opacity duration-300">
+        
+        <!-- Refresh Button -->
+        <button id="refresh-model-btn" class="absolute top-6 left-6 md:top-10 md:left-10 text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-widest z-50 bg-white/10 px-4 py-2 rounded-xl border border-white/10">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            <span>Refresh</span>
+        </button>
+
         <button id="close-modal-btn" class="absolute top-6 right-6 md:top-10 md:right-10 text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-widest z-50 bg-white/10 px-4 py-2 rounded-xl border border-white/10">
             <span>Close</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
+        
         <div class="w-full max-w-5xl h-[80vh] flex flex-col items-center px-4 relative">
             <h3 id="modal-title" class="text-white text-2xl font-bold mb-4 tracking-tight"></h3>
             
-            <!-- model-viewer component -->
+            <!-- The model-viewer component -->
             <div class="w-full h-full rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl bg-[#0A0C10]/80">
                 <model-viewer 
                     id="modal-model-viewer" 
@@ -281,6 +342,15 @@
                     shadow-intensity="1"
                     exposure="1"
                     class="w-full h-full outline-none cursor-grab active:cursor-grabbing">
+                    
+                    <!-- Loading Screen & Progress Bar -->
+                    <div slot="progress-bar" class="absolute inset-0 flex flex-col items-center justify-center bg-bgDark/90 backdrop-blur-md z-10 transition-opacity duration-300" id="loading-screen">
+                        <div class="w-12 h-12 border-4 border-white/10 border-t-orange-500 rounded-full animate-spin mb-4"></div>
+                        <div class="text-white text-xs font-bold tracking-widest uppercase mb-3">Loading Model...</div>
+                        <div class="w-48 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="loading-progress" class="h-full bg-gradient-to-r from-orange-500 to-amber-500 w-0 transition-all duration-300"></div>
+                        </div>
+                    </div>
                 </model-viewer>
             </div>
             <p class="text-gray-500 text-xs mt-4 uppercase tracking-widest text-center">Use mouse or touch to rotate and zoom</p>
@@ -295,9 +365,9 @@
                 title: "Virtual Campus",
                 category: "blender",
                 categoryLabel: "3D / Blender",
-                image: "images/Campus.png",
+                image: "images/VS_cover.png",
                 description: "Minimalist architectural visualization.",
-                link: "https://dmc-14.github.io/Virtual_Campus/"
+                link: "https://dmc-14.github.io/Virtual_Campus/",    
             },
             {
                 id: 2,
@@ -306,50 +376,43 @@
                 categoryLabel: "Animation",
                 image: "images/MURTO_poster.jpg",
                 description: "Story in motion.",
-                link: "https://drive.google.com/drive/folders/1ro1YeUSqczvWm6gsyQZhmHpU2T2hn7DA?usp=sharing"
+                link: "https://drive.google.com/drive/folders/1ro1YeUSqczvWm6gsyQZhmHpU2T2hn7DA?usp=sharing",
+                video: "videos/MURTO.mp4",
+                credits: "Director: Daniel Cabanas &nbsp;|&nbsp; Production: Jennilyn Araez, Neil Tupas, Joshua Castrosanto, & Jun Ray Dela Torre" // <--- ADDED CREDITS HERE
             },
             {
                 id: 3,
-                title: "Urban Geometry",
+                title: "The Gallery",
                 category: "photography",
                 categoryLabel: "Photography",
-                image: "images/cover.jpg",
+                image: "images/The Gallery_cover.png",
                 description: "Exploring shapes in the city.",
                 link: "https://dmc-14.github.io/The-Gallery/"
-            },
-            {
-                id: 4,
-                title: "Aura Skincare",
-                category: "graphic",
-                categoryLabel: "Graphic Design",
-                image: "https://placehold.co/800x600/f97316/ffffff?text=Brand+Identity",
-                description: "Clean packaging and brand guidelines.",
-                link: "https://example.com/project4"
-            },
-            {
-                id: 5,
-                title: "Abstract Loops",
-                category: "blender",
-                categoryLabel: "3D / Animation",
-                image: "https://placehold.co/800x800/2563eb/07080B?text=3D+Abstract",
-                description: "Satisfying seamless physics loops.",
-                link: "https://example.com/project5"
             },
             {
                 id: 6,
                 title: "Editorial Spread",
                 category: "graphic",
                 categoryLabel: "Graphic Design",
-                image: "https://placehold.co/800x1000/d97706/ffffff?text=Print+Design",
+                image: "images/Spread cover.png",
                 description: "Magazine layout focused on typography.",
-                link: "https://example.com/project6"
+                // The gallery array containing your 7 spread images
+                gallery: [
+                    "images/1.png",
+                    "images/2.png",
+                    "images/3.png",
+                    "images/4.png",
+                    "images/5.png",
+                    "images/6.png",
+                    "images/7.png"
+                ]
             }
         ];
 
         const grid = document.getElementById('portfolio-grid');
         const filterBtns = document.querySelectorAll('.filter-btn');
 
-        // --- Render Projects Function (Updated for Warm Orange/Blue Accents) ---
+        // --- Render Projects Function ---
         function renderProjects(filter = 'all') {
             grid.innerHTML = ''; 
             
@@ -361,9 +424,21 @@
                 const isTall = project.image.includes('1000');
                 const spanClass = isTall ? 'md:row-span-2' : '';
 
+                // Dynamically assign click action: 3D model, Gallery slider, Video, or standard Link
+                const safeCredits = project.credits ? project.credits.replace(/'/g, "\\'") : '';
                 const clickAction = project.glb 
                     ? `onclick="event.preventDefault(); openGLBModal('${project.glb}', '${project.title.replace(/'/g, "\\'")}')" href="#"` 
+                    : project.gallery
+                    ? `onclick="event.preventDefault(); openGalleryModal(${project.id})" href="#"`
+                    : project.video
+                    ? `onclick="event.preventDefault(); openVideoModal('${project.video}', '${project.title.replace(/'/g, "\\'")}', '${safeCredits}')" href="#"`
                     : `href="${project.link || '#'}" target="_blank" rel="noopener noreferrer"`;
+
+                // Determine the correct CTA text based on project type
+                let ctaText = 'View Project';
+                if (project.glb) ctaText = 'View 3D Model';
+                if (project.gallery) ctaText = 'View Gallery';
+                if (project.video) ctaText = 'Watch Video'; // <--- Added Watch Video CTA
 
                 const cardHTML = `
                     <a ${clickAction} class="group block relative h-full cursor-pointer fade-in rounded-2xl bg-cardDark border border-borderDark overflow-hidden card-hover ${spanClass}">
@@ -378,7 +453,7 @@
                             <p class="text-gray-400 text-sm mb-6 max-w-xs">${project.description}</p>
                             
                             <span class="inline-flex items-center gap-2 text-xs font-bold text-white bg-white/10 hover:bg-orange-500/20 px-4 py-2 rounded-xl border border-white/10 hover:border-orange-500/40 transition-all">
-                                <span>${project.glb ? 'View 3D Model' : 'View Project'}</span>
+                                <span>${ctaText}</span>
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </span>
                         </div>
@@ -391,7 +466,7 @@
         // --- Initialize Grid ---
         renderProjects();
 
-        // --- Filter Logic (Updated with Warm Orange/Amber Styling) ---
+        // --- Filter Logic ---
         filterBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 filterBtns.forEach(b => {
@@ -420,14 +495,174 @@
             });
         });
 
+        // --- STREAMING_CHUNK:Setting up Gallery Lightbox Logic ---
+        // --- Image Gallery Modal Logic ---
+        const galleryModal = document.getElementById('gallery-modal');
+        const galleryImage = document.getElementById('gallery-image');
+        const galleryTitle = document.getElementById('gallery-title');
+        const galleryCounter = document.getElementById('gallery-counter');
+        const closeGalleryBtn = document.getElementById('close-gallery-btn');
+        const nextGalleryBtn = document.getElementById('next-gallery-btn');
+        const prevGalleryBtn = document.getElementById('prev-gallery-btn');
+        
+        let currentGallery = [];
+        let currentImageIndex = 0;
+
+        window.openGalleryModal = (projectId) => {
+            const project = projects.find(p => p.id === projectId);
+            if (!project || !project.gallery) return;
+            
+            currentGallery = project.gallery;
+            currentImageIndex = 0;
+            galleryTitle.innerText = project.title;
+            
+            updateGalleryImage();
+            
+            galleryModal.classList.remove('hidden');
+            setTimeout(() => {
+                galleryModal.classList.remove('opacity-0');
+            }, 10);
+            
+            document.body.style.overflow = 'hidden';
+        };
+
+        const updateGalleryImage = () => {
+            // Quick fade effect for smooth transitions
+            galleryImage.style.opacity = '0';
+            setTimeout(() => {
+                galleryImage.src = currentGallery[currentImageIndex];
+                galleryCounter.innerText = `${currentImageIndex + 1} / ${currentGallery.length}`;
+                galleryImage.style.opacity = '1';
+            }, 150);
+        };
+
+        const closeGalleryModal = () => {
+            galleryModal.classList.add('opacity-0');
+            setTimeout(() => {
+                galleryModal.classList.add('hidden');
+                galleryImage.src = '';
+                document.body.style.overflow = '';
+            }, 300);
+        };
+
+        // Navigation
+        nextGalleryBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
+            updateGalleryImage();
+        });
+
+        prevGalleryBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
+            updateGalleryImage();
+        });
+
+        closeGalleryBtn.addEventListener('click', closeGalleryModal);
+        
+        // Close if clicking on the dark background
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal || (e.target.tagName === 'DIV' && e.target.parentElement === galleryModal)) {
+                closeGalleryModal();
+            }
+        });
+
+        // Add keyboard support for the gallery
+        window.addEventListener('keydown', (e) => {
+            if (!galleryModal.classList.contains('hidden')) {
+                if (e.key === 'ArrowRight') {
+                    nextGalleryBtn.click();
+                } else if (e.key === 'ArrowLeft') {
+                    prevGalleryBtn.click();
+                } else if (e.key === 'Escape') {
+                    closeGalleryModal();
+                }
+            }
+        });
+
+        // --- Video Modal Logic ---
+        const videoModal = document.getElementById('video-modal');
+        const videoPlayer = document.getElementById('modal-video-player');
+        const videoTitle = document.getElementById('video-title');
+        const videoCredits = document.getElementById('video-credits');
+        const closeVideoBtn = document.getElementById('close-video-btn');
+
+        // Added credits parameter
+        window.openVideoModal = (videoSrc, title, credits) => {
+            videoTitle.innerText = title;
+            videoCredits.innerHTML = credits || ''; // Use innerHTML to allow styling like &nbsp; spaces
+            videoPlayer.src = videoSrc;
+            
+            videoModal.classList.remove('hidden');
+            setTimeout(() => {
+                videoModal.classList.remove('opacity-0');
+                // Auto-play the video when opened
+                videoPlayer.play().catch(e => console.log("Autoplay prevented by browser:", e));
+            }, 10);
+            
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeVideoModal = () => {
+            videoModal.classList.add('opacity-0');
+            // Pause the video immediately so audio stops in the background
+            videoPlayer.pause();
+            setTimeout(() => {
+                videoModal.classList.add('hidden');
+                videoPlayer.src = '';
+                document.body.style.overflow = '';
+            }, 300);
+        };
+
+        closeVideoBtn.addEventListener('click', closeVideoModal);
+        
+        // Close if clicking on the dark background
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal || (e.target.tagName === 'DIV' && e.target.parentElement === videoModal)) {
+                closeVideoModal();
+            }
+        });
+        
+        // Close video on Escape key
+        window.addEventListener('keydown', (e) => {
+            if (!videoModal.classList.contains('hidden') && e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
+
+        // --- STREAMING_CHUNK:Setting up GLB Modal Logic ---
         // --- GLB Modal Logic ---
         const glbModal = document.getElementById('glb-modal');
         const modalViewer = document.getElementById('modal-model-viewer');
         const modalTitle = document.getElementById('modal-title');
         const closeModalBtn = document.getElementById('close-modal-btn');
+        const refreshModelBtn = document.getElementById('refresh-model-btn');
+        const loadingScreen = document.getElementById('loading-screen');
+        const loadingProgress = document.getElementById('loading-progress');
+
+        // Progress bar for 3D model
+        modalViewer.addEventListener('progress', (event) => {
+            const progress = event.detail.totalProgress * 100;
+            loadingProgress.style.width = `${progress}%`;
+        });
+
+        // Use load event to hide screen when ready (fixes cache bugs)
+        modalViewer.addEventListener('load', () => {
+            if (modalViewer.getAttribute('src')) {
+                loadingProgress.style.width = '100%';
+                setTimeout(() => {
+                    loadingScreen.classList.add('opacity-0');
+                    setTimeout(() => loadingScreen.classList.add('hidden'), 300);
+                }, 200); 
+            }
+        });
 
         window.openGLBModal = (glbSrc, title) => {
             modalTitle.innerText = title;
+            loadingScreen.classList.remove('hidden', 'opacity-0');
+            loadingProgress.style.width = '0%';
+            
             modalViewer.src = glbSrc;
             
             glbModal.classList.remove('hidden');
@@ -442,10 +677,23 @@
             glbModal.classList.add('opacity-0');
             setTimeout(() => {
                 glbModal.classList.add('hidden');
-                modalViewer.src = '';
-                document.body.style.overflow = '';
-            }, 300);
+                modalViewer.removeAttribute('src'); 
+                document.body.style.overflow = ''; 
+            }, 300); 
         };
+        
+        refreshModelBtn.addEventListener('click', () => {
+            const currentSrc = modalViewer.getAttribute('src');
+            if (!currentSrc) return;
+            
+            modalViewer.removeAttribute('src'); 
+            loadingScreen.classList.remove('hidden', 'opacity-0');
+            loadingProgress.style.width = '0%';
+            
+            setTimeout(() => {
+                modalViewer.src = currentSrc; 
+            }, 100);
+        });
 
         closeModalBtn.addEventListener('click', closeGLBModal);
         
