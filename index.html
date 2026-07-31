@@ -299,7 +299,17 @@
                 <p id="video-credits" class="text-gray-400 text-xs sm:text-sm font-medium tracking-wide"></p>
             </div>
             
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/B7KZizi8_Y0?si=fvF574XWyYDQ77XQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
+                    <iframe 
+                        id="modal-video-player"
+                        class="absolute inset-0 w-full h-full"
+                        src="https://www.youtube.com/embed/B7KZizi8_Y0?si=fvF574XWyYDQ77XQ" 
+                        title="Murto Short Film" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
             </div>
         </div>
     </div>
