@@ -299,17 +299,16 @@
                 <p id="video-credits" class="text-gray-400 text-xs sm:text-sm font-medium tracking-wide"></p>
             </div>
             
-                <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
-                    <iframe 
-                        id="modal-video-player"
-                        class="absolute inset-0 w-full h-full"
-                        src="https://www.youtube.com/embed/B7KZizi8_Y0?si=fvF574XWyYDQ77XQ" 
-                        title="Murto Short Film" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+            <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-2xl border border-white/10">
+                <iframe 
+                    id="modal-video-player"
+                    class="absolute inset-0 w-full h-full"
+                    src="" 
+                    title="Murto Short Film" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
     </div>
@@ -377,8 +376,8 @@
                 image: "images/MURTO_poster.jpg",
                 description: "Story in motion.",
                 link: "",
-                video: "videos/Murto.mp4",
-                credits: "Director: Daniel Cabañas &nbsp;|&nbsp; Production: Jennilyn Araez, Neil Tupas, Joshua Castrosanto, & Jun Ray Dela Torre" // <--- ADDED CREDITS HERE
+                video: "https://www.youtube.com/embed/B7KZizi8_Y0?si=fvF574XWyYDQ77XQ&autoplay=1", // <--- UPDATED TO YOUR YOUTUBE LINK
+                credits: "Director: Daniel Cabañas &nbsp;|&nbsp; Production: Jennilyn Araez, Neil Tupas, Joshua Castrosanto, & Jun Ray Dela Torre"
             },
             {
                 id: 3,
@@ -396,7 +395,6 @@
                 categoryLabel: "Graphic Design",
                 image: "images/Spread cover.png",
                 description: "Magazine layout focused on typography.",
-                // The gallery array containing your 7 spread images
                 gallery: [
                     "images/1.png",
                     "images/2.png",
@@ -424,7 +422,6 @@
                 const isTall = project.image.includes('1000');
                 const spanClass = isTall ? 'md:row-span-2' : '';
 
-                // Dynamically assign click action: 3D model, Gallery slider, Video, or standard Link
                 const safeCredits = project.credits ? project.credits.replace(/'/g, "\\'") : '';
                 const clickAction = project.glb 
                     ? `onclick="event.preventDefault(); openGLBModal('${project.glb}', '${project.title.replace(/'/g, "\\'")}')" href="#"` 
@@ -434,11 +431,10 @@
                     ? `onclick="event.preventDefault(); openVideoModal('${project.video}', '${project.title.replace(/'/g, "\\'")}', '${safeCredits}')" href="#"`
                     : `href="${project.link || '#'}" target="_blank" rel="noopener noreferrer"`;
 
-                // Determine the correct CTA text based on project type
                 let ctaText = 'View Project';
                 if (project.glb) ctaText = 'View 3D Model';
                 if (project.gallery) ctaText = 'View Spread';
-                if (project.video) ctaText = 'Watch Video'; // <--- Added Watch Video CTA
+                if (project.video) ctaText = 'Watch Video';
 
                 const cardHTML = `
                     <a ${clickAction} class="group block relative h-full cursor-pointer fade-in rounded-2xl bg-cardDark border border-borderDark overflow-hidden card-hover ${spanClass}">
@@ -495,7 +491,6 @@
             });
         });
 
-        // --- STREAMING_CHUNK:Setting up Gallery Lightbox Logic ---
         // --- Image Gallery Modal Logic ---
         const galleryModal = document.getElementById('gallery-modal');
         const galleryImage = document.getElementById('gallery-image');
@@ -527,7 +522,6 @@
         };
 
         const updateGalleryImage = () => {
-            // Quick fade effect for smooth transitions
             galleryImage.style.opacity = '0';
             setTimeout(() => {
                 galleryImage.src = currentGallery[currentImageIndex];
@@ -545,7 +539,6 @@
             }, 300);
         };
 
-        // Navigation
         nextGalleryBtn.addEventListener('click', (e) => {
             e.stopPropagation(); 
             currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
@@ -560,14 +553,12 @@
 
         closeGalleryBtn.addEventListener('click', closeGalleryModal);
         
-        // Close if clicking on the dark background
         galleryModal.addEventListener('click', (e) => {
             if (e.target === galleryModal || (e.target.tagName === 'DIV' && e.target.parentElement === galleryModal)) {
                 closeGalleryModal();
             }
         });
 
-        // Add keyboard support for the gallery
         window.addEventListener('keydown', (e) => {
             if (!galleryModal.classList.contains('hidden')) {
                 if (e.key === 'ArrowRight') {
@@ -580,24 +571,21 @@
             }
         });
 
-        // --- Video Modal Logic ---
+        // --- Video Modal Logic (UPDATED FOR YOUTUBE IFRAME) ---
         const videoModal = document.getElementById('video-modal');
         const videoPlayer = document.getElementById('modal-video-player');
         const videoTitle = document.getElementById('video-title');
         const videoCredits = document.getElementById('video-credits');
         const closeVideoBtn = document.getElementById('close-video-btn');
 
-        // Added credits parameter
         window.openVideoModal = (videoSrc, title, credits) => {
             videoTitle.innerText = title;
-            videoCredits.innerHTML = credits || ''; // Use innerHTML to allow styling like &nbsp; spaces
-            videoPlayer.src = videoSrc;
+            videoCredits.innerHTML = credits || '';
+            videoPlayer.src = videoSrc; // Sets YouTube URL and begins autoplay
             
             videoModal.classList.remove('hidden');
             setTimeout(() => {
                 videoModal.classList.remove('opacity-0');
-                // Auto-play the video when opened
-                videoPlayer.play().catch(e => console.log("Autoplay prevented by browser:", e));
             }, 10);
             
             document.body.style.overflow = 'hidden';
@@ -605,33 +593,27 @@
 
         const closeVideoModal = () => {
             videoModal.classList.add('opacity-0');
-            // Pause the video immediately so audio stops in the background
-            videoPlayer.pause();
             setTimeout(() => {
                 videoModal.classList.add('hidden');
-                videoPlayer.src = '';
+                videoPlayer.src = ''; // Clearing src immediately stops YouTube audio
                 document.body.style.overflow = '';
             }, 300);
         };
 
         closeVideoBtn.addEventListener('click', closeVideoModal);
         
-        // Close if clicking on the dark background
         videoModal.addEventListener('click', (e) => {
             if (e.target === videoModal || (e.target.tagName === 'DIV' && e.target.parentElement === videoModal)) {
                 closeVideoModal();
             }
         });
         
-        // Close video on Escape key
         window.addEventListener('keydown', (e) => {
             if (!videoModal.classList.contains('hidden') && e.key === 'Escape') {
                 closeVideoModal();
             }
         });
 
-
-        // --- STREAMING_CHUNK:Setting up GLB Modal Logic ---
         // --- GLB Modal Logic ---
         const glbModal = document.getElementById('glb-modal');
         const modalViewer = document.getElementById('modal-model-viewer');
@@ -641,13 +623,11 @@
         const loadingScreen = document.getElementById('loading-screen');
         const loadingProgress = document.getElementById('loading-progress');
 
-        // Progress bar for 3D model
         modalViewer.addEventListener('progress', (event) => {
             const progress = event.detail.totalProgress * 100;
             loadingProgress.style.width = `${progress}%`;
         });
 
-        // Use load event to hide screen when ready (fixes cache bugs)
         modalViewer.addEventListener('load', () => {
             if (modalViewer.getAttribute('src')) {
                 loadingProgress.style.width = '100%';
